@@ -31,71 +31,71 @@
 #error Unsupported platform. Please fix "endian.h"
 #endif
 
-typedef struct {
- unsigned char v[4];
- inline operator uint32_t () const {
-   uint32_t r = (v[3]<<24)|(v[2]<<16)|(v[1]<<8)|v[0];
-   return r;
- }
- inline void operator=(const uint32_t &c) {
-   v[3] = c>>24;
-   v[2] = (c>>16)&0xff;
-   v[1] = (c>>8)&0xff;
-   v[0] = c&0xff;
- }
+// typedef struct {
+//  unsigned char v[4];
+//  inline operator uint32_t () const {
+//    uint32_t r = (v[3]<<24)|(v[2]<<16)|(v[1]<<8)|v[0];
+//    return r;
+//  }
+//  inline void operator=(const uint32_t &c) {
+//    v[3] = c>>24;
+//    v[2] = (c>>16)&0xff;
+//    v[1] = (c>>8)&0xff;
+//    v[0] = c&0xff;
+//  }
 
-} __attribute__((packed)) __swapped32;
+// } __attribute__((packed)) __swapped32;
 
-typedef struct {
- unsigned char v[2];
- inline operator uint16_t () const {
-   uint16_t r = (v[1]<<8)|v[0];
-   return r;
- }
- inline void operator=(const uint16_t &c) {
-   v[1] = c>>8;
-   v[0] = c&0xff;
- }
+// typedef struct {
+//  unsigned char v[2];
+//  inline operator uint16_t () const {
+//    uint16_t r = (v[1]<<8)|v[0];
+//    return r;
+//  }
+//  inline void operator=(const uint16_t &c) {
+//    v[1] = c>>8;
+//    v[0] = c&0xff;
+//  }
 
-} __attribute__((packed)) __swapped16;
+// } __attribute__((packed)) __swapped16;
 
 
 
-#if __BYTE_ORDER == __LITTLE_ENDIAN
+// #if __BYTE_ORDER == __LITTLE_ENDIAN
 
-#define cpu_to_le32(x) (x)
-#define le32_to_cpu(x) (x)
-#define cpu_to_le16(x) (x)
-#define le16_to_cpu(x) (x)
+// #define cpu_to_le32(x) (x)
+// #define le32_to_cpu(x) (x)
+// #define cpu_to_le16(x) (x)
+// #define le16_to_cpu(x) (x)
 
-#define cpu_to_be32(x) bswap_32(x)
-#define be32_to_cpu(x) bswap_32(x)
-#define cpu_to_be16(x) bswap_16(x)
-#define be16_to_cpu(x) bswap_16(x)
+// #define cpu_to_be32(x) bswap_32(x)
+// #define be32_to_cpu(x) bswap_32(x)
+// #define cpu_to_be16(x) bswap_16(x)
+// #define be16_to_cpu(x) bswap_16(x)
 
-typedef uint32_t __le32;
-typedef uint16_t __le16;
-typedef __swapped32 __be32;
-typedef __swapped16 __be16;
+// typedef uint32_t __le32;
+// typedef uint16_t __le16;
+// typedef __swapped32 __be32;
+// typedef __swapped16 __be16;
 
-#elif __BYTE_ORDER == __BIG_ENDIAN
+// #elif __BYTE_ORDER == __BIG_ENDIAN
 
-#define cpu_to_le32(x) bswap_32(x)
-#define le32_to_cpu(x) bswap_32(x)
-#define cpu_to_le16(x) bswap_16(x)
-#define le16_to_cpu(x) bswap_16(x)
+// #define cpu_to_le32(x) bswap_32(x)
+// #define le32_to_cpu(x) bswap_32(x)
+// #define cpu_to_le16(x) bswap_16(x)
+// #define le16_to_cpu(x) bswap_16(x)
 
-#define cpu_to_be32(x) (x)
-#define be32_to_cpu(x) (x)
-#define cpu_to_be16(x) (x)
-#define be16_to_cpu(x) (x)
+// #define cpu_to_be32(x) (x)
+// #define be32_to_cpu(x) (x)
+// #define cpu_to_be16(x) (x)
+// #define be16_to_cpu(x) (x)
 
-typedef uint32_t __be32;
-typedef uint16_t __be16;
-typedef __swapped32 __le32;
-typedef __swapped16 __le16;
+// typedef uint32_t __be32;
+// typedef uint16_t __be16;
+// typedef __swapped32 __le32;
+// typedef __swapped16 __le16;
 
-#endif
+// #endif
 
 static inline uint16_t bswap_16(uint16_t v)
 {
