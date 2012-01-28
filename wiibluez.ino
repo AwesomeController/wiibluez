@@ -1,6 +1,5 @@
 #include "./definitions.h"
-#include "./bluetooth.h"
-#include "./wiiuse.h"
+#include "./wiiuse_internal.h"
 
 void setup() {
 
